@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ArtGallery</string>
+    <string name="editText">Enter Text</string>
+    <string name="btn_publish">Publish</string>
+
+    <string name="congrats_text">Your Logged In Yay</string>
+    <string name="sign_out_button">Sign Out</string>
+
+</resources>
