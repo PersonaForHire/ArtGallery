@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,11 +22,7 @@ import ie.wit.artgallery.activities.HomeActivity as HomeActivity
 
 class LogInActivity : AppCompatActivity(), AnkoLogger {
     // Choose authentication providers
-    val providers = arrayListOf(
 
-        AuthUI.IdpConfig.GoogleBuilder().build(),
-        AuthUI.IdpConfig.FacebookBuilder().build(),
-        AuthUI.IdpConfig.TwitterBuilder().build())
 
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
