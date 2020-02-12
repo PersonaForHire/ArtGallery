@@ -8,24 +8,27 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 
-import com.google.firebase.auth.FirebaseAuth
 
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.artgallery.R
 import ie.wit.artgallery.models.ArtModel
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_home.sign_out_button
+import kotlinx.android.synthetic.main.activity_post.*
+import kotlinx.android.synthetic.main.activity_post.sign_out_button
 
 
-
-class HomeActivity : AppCompatActivity() {
+class PostActivity : AppCompatActivity(){
     var art=ArtModel()
+    val arts =ArrayList<ArtModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_post)
+
         setupUI()
         post_button.setOnClickListener {
-            art = editTxtComment.text.toString()
+            val editTxt = editTxtComment.text.toString()
+            arts.add(art.copy())
+            arts.forEach{}
         }
     }
 
@@ -39,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signOut()
     }
     companion object {
-        fun getLaunchIntent(from: Context) = Intent(from, HomeActivity::class.java).apply {
+        fun getLaunchIntent(from: Context) = Intent(from, PostActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
     }

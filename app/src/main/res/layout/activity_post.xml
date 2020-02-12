@@ -6,12 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".activities.HomeActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@color/colorPrimary"/>
+    tools:context=".activities.PostActivity">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -49,22 +44,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@id/editTxtComment"
+
+            <EditText
+                android:id="@+id/editTxtComment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="fdfasfa" />
-
-
-
-<!--                <EditText-->
-<!--                    android:id="@+id/editTxtComment"-->
-<!--                    android:layout_width="135dp"-->
-<!--                    android:layout_height="70dp"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="@string/hint_comment"-->
-<!--                    android:inputType="String"/>-->
-
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="@string/hint_comment"
+                android:inputType="textAutoCorrect"
+                android:visibility="visible" />
 
             <Button
                 android:id="@+id/post_button"

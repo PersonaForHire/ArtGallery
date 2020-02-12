@@ -17,7 +17,6 @@ import ie.wit.artgallery.R
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import ie.wit.artgallery.activities.HomeActivity as HomeActivity
 
 
 class LogInActivity : AppCompatActivity(), AnkoLogger {
@@ -44,7 +43,7 @@ class LogInActivity : AppCompatActivity(), AnkoLogger {
         super.onStart()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            startActivity(HomeActivity.getLaunchIntent(this))
+            startActivity(PostActivity.getLaunchIntent(this))
             finish()
         }
     }
@@ -84,7 +83,7 @@ class LogInActivity : AppCompatActivity(), AnkoLogger {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
 
-                startActivity(HomeActivity.getLaunchIntent(this))
+                startActivity(PostActivity.getLaunchIntent(this))
             } else {
                 Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
             }
