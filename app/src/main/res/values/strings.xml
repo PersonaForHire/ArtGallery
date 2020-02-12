@@ -6,5 +6,8 @@
     <string name="congrats_text">Your Logged In Yay</string>
     <string name="sign_out_button">Sign Out</string>
     <string name="btn_signin">Sign in</string>
+    <string name="chooseImage">Choose</string>
+    <string name="uploadImage">Upload</string>
+    <string name="users_image">Users image</string>
 
 </resources>
