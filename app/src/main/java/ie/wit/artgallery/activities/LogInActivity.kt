@@ -20,7 +20,7 @@ import org.jetbrains.anko.info
 
 
 class LogInActivity : AppCompatActivity(), AnkoLogger {
-    // Choose authentication providers
+
 
 
     val RC_SIGN_IN: Int = 1

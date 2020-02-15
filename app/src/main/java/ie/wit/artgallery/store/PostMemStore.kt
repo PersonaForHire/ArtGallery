@@ -1,4 +1,4 @@
-package ie.wit.artgallery.Store
+package ie.wit.artgallery.store
 
 import android.util.Log
 import ie.wit.artgallery.models.ArtModel
@@ -9,6 +9,7 @@ internal fun getId():Long{
 }
 
 class PostMemStore : PostStore{
+
     val posts = ArrayList<ArtModel>()
 
     override fun findAll(): List<ArtModel> {
@@ -16,8 +17,8 @@ class PostMemStore : PostStore{
     }
 
     override fun findById(id:Long) : ArtModel? {
-        val foundDonation: ArtModel? = posts.find { it.id == id }
-        return foundDonation
+        val foundPost: ArtModel? = posts.find { it.id == id }
+        return foundPost
     }
 
     override fun create(post: ArtModel) {
@@ -25,6 +26,15 @@ class PostMemStore : PostStore{
         posts.add(post)
         logAll()
     }
+
+    override fun update(art: ArtModel) {
+        var foundPost: ArtModel? = posts.find { p -> p.id == art.id }
+        if (foundPost != null) {
+            foundPost.comment = art.comment
+            logAll()
+        }
+    }
+
 
     fun logAll() {
         Log.v("Post","** Posts in the feed**")
