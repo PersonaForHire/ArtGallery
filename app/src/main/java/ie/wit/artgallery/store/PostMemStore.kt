@@ -31,8 +31,12 @@ class PostMemStore : PostStore{
         var foundPost: ArtModel? = posts.find { p -> p.id == art.id }
         if (foundPost != null) {
             foundPost.comment = art.comment
+            foundPost.image = art.image
             logAll()
         }
+    }
+    override fun delete(art: ArtModel) {
+        posts.remove(art)
     }
 
 

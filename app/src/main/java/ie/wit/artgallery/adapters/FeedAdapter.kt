@@ -5,8 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.artgallery.R
+import ie.wit.artgallery.helpers.readImageFromPath
 import ie.wit.artgallery.models.ArtModel
 import kotlinx.android.synthetic.main.activity_post.view.*
+import kotlinx.android.synthetic.main.activity_post.view.editTxtComment
+import kotlinx.android.synthetic.main.card_feed_posts.view.*
 
 interface PostListener{
     fun onPostClick(art: ArtModel)
@@ -29,6 +32,7 @@ class FeedAdapter constructor(private var arts: List<ArtModel>, private val list
 
         fun bind(art: ArtModel,listener: PostListener) {
             itemView.editTxtComment.text = art.comment
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, art.image))
             itemView.setOnClickListener { listener.onPostClick(art) }
         }
 

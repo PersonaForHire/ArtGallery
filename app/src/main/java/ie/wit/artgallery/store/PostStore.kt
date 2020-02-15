@@ -7,4 +7,5 @@ interface PostStore{
     fun findById(id: Long) : ArtModel?
     fun create(post: ArtModel)
     fun update(art: ArtModel)
+    fun delete(art: ArtModel)
 }

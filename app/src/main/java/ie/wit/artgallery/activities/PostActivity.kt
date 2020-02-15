@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.google.firebase.auth.FirebaseAuth
 import ie.wit.artgallery.R
+import ie.wit.artgallery.helpers.readImage
+import ie.wit.artgallery.helpers.readImageFromPath
+import ie.wit.artgallery.helpers.showImagePicker
 import ie.wit.artgallery.main.MainApp
 import ie.wit.artgallery.models.ArtModel
 import kotlinx.android.synthetic.main.activity_post.*
@@ -23,9 +26,10 @@ import org.jetbrains.anko.toast
 
 
 class PostActivity : AppCompatActivity(), AnkoLogger {
-    var art = ArtModel(editTxtComment.text)
-    val arts = ArrayList<ArtModel>()
+    var art = ArtModel(editTxtComment.toString())
     var edit = false
+    val IMAGE_REQUEST = 1
+
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,10 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
             art = intent.extras?.getParcelable<ArtModel>("post_edit")!!
             editTxtComment.setText(art.comment)
             post_button.setText("Post")
+            postImage.setImageBitmap(readImageFromPath(this, art.image))
+            if (art.image != null) {
+                chooseImage.setText(R.string.change_post_image)
+            }
 
         }
         post_button.setOnClickListener() {
@@ -64,23 +72,43 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
 
         }
         chooseImage.setOnClickListener {
-            info ("Select image")
+            showImagePicker(this, IMAGE_REQUEST)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_post, menu)
+        if (edit && menu != null) menu.getItem(0).setVisible(true)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            R.id.item_delete->{
+                app.arts.delete(art)
+                finish()
+            }
             R.id.item_cancel -> {
                 finish()
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_REQUEST -> {
+                if (data != null) {
+                    art.image = data.getData().toString()
+                    postImage.setImageBitmap(readImage(this, resultCode, data))
+                    chooseImage.setText(R.string.change_post_image)
+                }
+            }
+        }
+    }
+
 
 
     companion object {

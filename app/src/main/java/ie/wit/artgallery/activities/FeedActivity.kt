@@ -27,15 +27,14 @@ class FeedActivity : AppCompatActivity(),PostListener {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = FeedAdapter(app.arts.findAll().this)
+        loadPosts()
 
-        toolbarMain.comment = title
+        toolbarMain.title
         setSupportActionBar(toolbarMain)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //recyclerView is a widget in activity_placemark_list.xml
-        recyclerView.adapter?.notifyDataSetChanged()
+        loadPosts()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -54,6 +53,20 @@ class FeedActivity : AppCompatActivity(),PostListener {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun loadPosts(){
+        showPosts(app.arts.findAll())
+    }
+
+    private fun showPosts(arts: List<ArtModel>){
+        recyclerView.adapter = FeedAdapter(arts, this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+
+
+
+
 }
 
 
