@@ -26,7 +26,7 @@ import org.jetbrains.anko.toast
 
 
 class PostActivity : AppCompatActivity(), AnkoLogger {
-    var art = ArtModel(editTxtComment.toString())
+    var art = ArtModel()
     var edit = false
     val IMAGE_REQUEST = 1
 
@@ -37,9 +37,6 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_post)
         app = application as MainApp
 
-        toolbarAdd.title = title
-        setSupportActionBar(toolbarAdd)
-
         sign_out_button.setOnClickListener {
             startActivity(LogInActivity.getLaunchIntent(this))
             FirebaseAuth.getInstance().signOut()
@@ -47,7 +44,6 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
         if (intent.hasExtra("post_edit")) {
             edit = true
             art = intent.extras?.getParcelable<ArtModel>("post_edit")!!
-            editTxtComment.setText(art.comment)
             post_button.setText("Post")
             postImage.setImageBitmap(readImageFromPath(this, art.image))
             if (art.image != null) {
@@ -56,17 +52,14 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
 
         }
         post_button.setOnClickListener() {
-            val editTxt = editTxtComment.text.toString()
-            if (editTxt.isNotEmpty()) {
-                info("add Button Pressed: $editTxt")
-            } else {
+
+
                 if (edit) {
                     app.arts.update(art.copy())
                 } else {
                     app.arts.create(art.copy())
                 }
 
-            }
             setResult(AppCompatActivity.RESULT_OK)
             finish()
 

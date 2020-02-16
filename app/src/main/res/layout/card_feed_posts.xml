@@ -19,13 +19,5 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="16dp"/>
 
-
-        <TextView
-            android:id="@+id/editTxtComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:textSize="30sp"/>
-
     </RelativeLayout>
 </android.support.v7.widget.CardView>

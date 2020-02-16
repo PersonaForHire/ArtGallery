@@ -30,7 +30,6 @@ class PostMemStore : PostStore{
     override fun update(art: ArtModel) {
         var foundPost: ArtModel? = posts.find { p -> p.id == art.id }
         if (foundPost != null) {
-            foundPost.comment = art.comment
             foundPost.image = art.image
             logAll()
         }

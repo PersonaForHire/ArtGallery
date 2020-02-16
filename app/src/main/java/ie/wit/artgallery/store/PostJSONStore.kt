@@ -52,7 +52,6 @@ class PostJSONStore : PostStore ,AnkoLogger {
         val artList = findAll() as ArrayList<ArtModel>
         var foundPost: ArtModel? = artList.find { p -> p.id == art.id }
         if (foundPost != null) {
-            foundPost.comment = art.comment
             foundPost.image = art.image
             logAll()
         }

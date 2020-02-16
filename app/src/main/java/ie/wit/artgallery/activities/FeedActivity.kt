@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ie.wit.artgallery.R
 import ie.wit.artgallery.adapters.FeedAdapter
 import ie.wit.artgallery.adapters.PostListener
@@ -26,11 +27,9 @@ class FeedActivity : AppCompatActivity(),PostListener {
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = layoutManager as RecyclerView.LayoutManager?
         loadPosts()
 
-        toolbarMain.title
-        setSupportActionBar(toolbarMain)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
